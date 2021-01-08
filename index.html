@@ -28,6 +28,8 @@
 </head>
 <body>
 <div id="grid_table"></div>
+
+<!--
 <div id="phase_1" class="phase">
 <body style="background-color:powdergrey;">
 <div id="room_0" class="room_class"></div>
@@ -41,7 +43,7 @@
 <div id="room_8" class="room_class"></div>
 <div id="room_9" class="room_class"></div>
 <div id="room_10" class="room_class"></div>
-
+-->
 </div>
 </body>
 </html>
@@ -62,11 +64,14 @@
         room_style = "background-color: purple;";
         room_border = "";
         room_dimensions = "colspan='"+studio[3]+"' rowspan='"+studio[2]+"'";
-      }
-      //if (i >studio[1] && j>studio[0] && i <= studio[3] && j<= studio[2]) {
 
-      //}else{
-      grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'></td>";
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>Studio</h3></td>";
+      }
+      if (i >= studio[0] && j>=studio[1] && i < studio[2] && j< studio[3]) {
+
+      }else{
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + i + "-" + j + "</td>";
+      }
       //i = studio[3]+1;
 
     }

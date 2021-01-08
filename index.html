@@ -51,10 +51,25 @@
 
 
 <script type="text/javascript">
+//[x_in, y_in, x_fin, y_fin]
   var studio = [0,0,3,6];
   var anticamera = [9,0,14,6];
+  var veranda = [17,0,21,5];
+  var biblioteca = [0,6,6,10];
+  var finale =[9,8,13,14];
+  var sala_pranzo =[16,9,21,15];
+  var sala_biliardo = [0,12,5,16];
+  var salotto =[0,19,5,22];
+  var sala_ballo =[8,17,15,22];
+  var cucina =[18,18,21,22];
+
+  //add the rooms to a list [add them vertically]
+  //var room_list = {1:studio,2:anticamera,..}
+
   var grid_html = "<table>";
-  for (var i = 0; i < 22; i++) {
+  //for (var k = 0; k < room_list.length; k++)
+  // var room = room_list[k]
+  for (var i = 0; i < 23; i++) {
     grid_html += "<tr>";
     for (var j = 0; j < 22; j++) {
       var room_style = "";
@@ -63,6 +78,8 @@
       if (i ==studio[1] && j==studio[0]) {
         room_style = "background-color: purple;";
         room_border = "";
+        // colspan = studio[3] - studio[1];
+        // rowspan = studio[2] - studio[0];
         room_dimensions = "colspan='"+studio[3]+"' rowspan='"+studio[2]+"'";
 
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>Studio</h3></td>";

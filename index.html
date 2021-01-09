@@ -52,8 +52,8 @@
 
 <script type="text/javascript">
 //[x_in, y_in, x_fin, y_fin]
-  var studio = [0,0,3,6];
-  var anticamera = [9,0,14,6];
+  //var studio = [0,0,3,6];
+  var studio = [9,0,14,7];
   var veranda = [17,0,21,5];
   var biblioteca = [0,6,6,10];
   var finale =[9,8,13,14];
@@ -80,7 +80,7 @@
         room_border = "";
         // colspan = studio[3] - studio[1];
         // rowspan = studio[2] - studio[0];
-        room_dimensions = "colspan='"+studio[3]+"' rowspan='"+studio[2]+"'";
+        room_dimensions = "colspan='"+(parseFloat(studio[3]) - parseFloat(studio[1]))+"' rowspan='"+(parseFloat(studio[2]) - parseFloat(studio[0]))+"'";
 
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>Studio</h3></td>";
       }

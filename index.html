@@ -52,31 +52,67 @@
 
 <script type="text/javascript">
 var clue_object = {
-  rooms: {
-    studio: [0,0,6,3],
-    anticamera: [9,0,14,7],
-    veranda: [16,0,21,5],
-    biblioteca: [0,6,5,10],
-    finale:[8,7,12,14],
-    sala_pranzo:[15,8,21,15],
-    sala_biliardo :[0,11,4,16],
-    salotto:[0,18,4,23],
-    sala_ballo:[7,16,14,23],
-    cucina:[17,17,21,23]
-  }
+  rooms: [
+    {
+      room:"studio",
+      coordinates: [0,0,6,3]
+    },
+    {
+      room: "anticamera",
+      coordinates:[9,0,14,7]
+    },
+    {
+      room:"veranda" ,
+      coordinates:[16,0,21,5]
+    },
+    {
+      room:"biblioteca",
+       coordinates:[0,6,5,10]
+     },
+    {
+      room:"finale",
+      coordinates:[8,7,12,14]
+    },
+    {
+      room:"sala_pranzo",
+      coordinates:[15,8,21,15]
+    },
+    {
+      room:"sala_biliardo" ,
+      coordinates:[0,11,4,16]
+    },
+    {
+      room:"salotto",
+      coordinates:[0,18,4,23]
+    },
+    {
+      room:"sala_ballo",
+      coordinates:[7,16,14,23]
+    },
+    {
+      room:"cucina",
+      coordinates:[17,17,21,22]
+    }
+  ]
 }
 
+var index_room = clue_object.rooms.shift();
+var this_room = index_room.coordinates;
+
+
   var grid_html = "<table>";
+  // i is for the rows
   for (var i = 0; i < 23; i++) {
     grid_html += "<tr>";
+
+    // j is for the columns
     for (var j = 0; j < 22; j++) {
       var room_style = "";
       var room_dimensions = "";
       var room_border = "border-style: solid;";
-      for (var k = 0; k < Object.keys(clue_object.rooms).length; k++){
-        var index_room =  Object.keys(clue_object.rooms)[k];
-        var this_room = clue_object.rooms[index_room];
-}
+      //for (var k = 0; k < Object.keys(clue_object.rooms).length; k++){
+        //var index_room =  Object.keys(clue_object.rooms)[k];
+        //var this_room = clue_object.rooms[index_room];
 
       if (i ==this_room[1] && j==this_room[0]) {
         room_style = "background-color: purple;";
@@ -88,13 +124,25 @@ var clue_object = {
 
         room_dimensions = "colspan='"+colspan+"' rowspan='"+rowspan+"'";
 
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+index_room+"</h3></td>";
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+index_room.room+"</h3></td>";
       }
-      if (j >= this_room[0] && i>=this_room[1] && j <= this_room[2] && i< this_room[3]) {
+      if (
+        j >= this_room[0] &&
+        i >= this_room[1] &&
+        j <= this_room[2] &&
+        i <  this_room[3]
+      )
+      {
+
+      }else if (i > this_room[3] && j> this_room[2]) {
+        index_room = clue_object.rooms.shift();
+        this_room = index_room.coordinates;
+
       }else{
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + i + "-" + j + "</td>";
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + i + "-" + j +  "</td>";
       }
     }
+    //}
   grid_html += "</tr>";
   }
   grid_html += "</table>";

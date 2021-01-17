@@ -11,6 +11,7 @@
 }
 
 #grid_table{
+  display:none;
 }
   body {
     background-color: #ffcc00;
@@ -24,99 +25,167 @@
   <script src="libraries/bootstrap.4.5.3.min.js"></script>
   <script src="libraries/papaparse.min.js"></script>
   <link rel="stylesheet" href="libraries/bootstrap.4.5.3.min.css"></link>
-  <h1 style="color: #5e9ca0;">Welcome to Connect the Clues </h1>
+
 </head>
 <body>
+
+<div id="welcome_page">
+  <div class="jumbotron">
+  <h1 style="color: #5e9ca0;">Welcome to Connect the Clues </h1>
+  <p class="lead"></p>
+
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Anthony" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Brendan" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Lily" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Nico" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Rich" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Thalia" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Character name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Zola" aria-label="Username" aria-describedby="basic-addon1">
+
+    <select class="form-control">
+      <option>Not playing (select color to play)</option>
+      <option>Pink</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </select>
+  </div>
+
+
+
+  <hr class="my-4">
+
+
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" role="button" id="start_game_btn">Start game</a>
+    </p>
+  </div>
+</div>
+
 <div id="grid_table"></div>
 
-<!--
-<div id="phase_1" class="phase">
-<body style="background-color:powdergrey;">
-<div id="room_0" class="room_class"></div>
-<div id="room_1" class="room_class"></div>
-<div id="room_2" class="room_class"></div>
-<div id="room_3" class="room_class"></div>
-<div id="room_4" class="room_class"></div>
-<div id="room_5" class="room_class"></div>
-<div id="room_6" class="room_class"></div>
-<div id="room_7" class="room_class"></div>
-<div id="room_8" class="room_class"></div>
-<div id="room_9" class="room_class"></div>
-<div id="room_10" class="room_class"></div>
--->
-</div>
 </body>
 </html>
 
 
 
 <script type="text/javascript">
-function in_room(x,y){
-  console.log("in room message");
-  console.log(x)
-  console.log(y);
-  var is_in_room = false;
 
-  clue_object.rooms.forEach((row, i) => {
-    console.log(row);
-
-    if(
-      x >= row.coordinates["x_start"] &&
-      y >= row.coordinates["y_start"] &&
-      x <= row.coordinates["x_end"] &&
-      y <= row.coordinates["y_end"]
-    ){
-      is_in_room = true;
-    }
-  });
-  console.log("is in room =" + is_in_room);
-  return is_in_room;
-
-}
-
-function start_room(x,y){
-  console.log("start room message");
-  console.log(x)
-  console.log(y);
-  var is_start_room = false;
-
-  clue_object.rooms.forEach((row, i) => {
-    console.log(row);
-
-    if(
-      x == row.coordinates["x_start"] &&
-      y == row.coordinates["y_start"]
-    ){
-      is_start_room = row.room;
-    }
-  });
-  console.log("is start room =" + is_start_room);
-  return is_start_room;
-
-}
 
 var clue_object = {
+  characters: [
+    {
+      name: "Nico",
+      color: "pink",
+      current_location: "tbc"
+    }
+  ],
   rooms: [
     {
       room:"studio",
+      color: "red",
       coordinates: {
         x_start: 0,
-        x_end: 6,
+        x_end: 5,
         y_start: 0,
         y_end: 3
       }
     },
     {
       room: "anticamera",
+      color: "red",
       coordinates:{
-        x_start: 9,
-        x_end: 14,
+        x_start: 8,
+        x_end: 13,
         y_start: 0,
-        y_end: 7
+        y_end: 6
       }
     },
     {
-      room:"veranda" ,
+      room:"veranda",
+      color: "red",
       coordinates: {
         x_start: 16,
         x_end: 21,
@@ -126,15 +195,17 @@ var clue_object = {
     },
     {
       room:"biblioteca",
+      color: "red",
       coordinates: {
         x_start: 0,
         x_end: 5,
-        y_start: 6,
+        y_start: 5,
         y_end: 10
       }
      },
     {
       room:"finale",
+      color: "red",
       coordinates: {
         x_start: 8,
         x_end: 12,
@@ -144,6 +215,7 @@ var clue_object = {
     },
     {
       room:"sala_pranzo",
+      color: "red",
       coordinates: {
         x_start: 15,
         x_end: 21,
@@ -153,6 +225,7 @@ var clue_object = {
     },
     {
       room:"sala_biliardo" ,
+      color: "red",
       coordinates: {
         x_start: 0,
         x_end: 4,
@@ -162,6 +235,7 @@ var clue_object = {
     },
     {
       room:"salotto",
+      color: "red",
       coordinates: {
         x_start: 0,
         x_end: 4,
@@ -171,6 +245,7 @@ var clue_object = {
     },
     {
       room:"sala_ballo",
+      color: "yellow",
       coordinates: {
         x_start: 7,
         x_end: 14,
@@ -180,15 +255,62 @@ var clue_object = {
     },
     {
       room:"cucina",
+      color: "orange",
       coordinates: {
         x_start: 17,
         x_end: 21,
         y_start: 17,
-        y_end: 22
+        y_end: 23
       }
     }
   ]
 }
+
+$("#start_game_btn").on("click", function(){
+
+
+
+  $("#welcome_page").fadeOut(1000, function(){
+    $("#grid_table").fadeIn(1000);
+  });
+});
+
+function in_room(x,y){
+  var is_in_room = false;
+
+  clue_object.rooms.forEach((row, i) => {
+
+    if(
+      x >= row.coordinates["x_start"] &&
+      y >= row.coordinates["y_start"] &&
+      x <= row.coordinates["x_end"] &&
+      y < row.coordinates["y_end"]
+    ){
+      is_in_room = true;
+    }
+  });
+  return is_in_room;
+
+}
+
+function start_room(x,y){
+  var is_start_room = false;
+
+  clue_object.rooms.forEach((row, i) => {
+
+    if(
+      x == row.coordinates["x_start"] &&
+      y == row.coordinates["y_start"]
+    ){
+      is_start_room = row;
+    }
+  });
+  return is_start_room;
+
+}
+
+
+
 
 
   var grid_html = "<table>";
@@ -208,28 +330,19 @@ var clue_object = {
       */
       if (start_room(x,y)){
         var this_room = start_room(x,y);
-        console.log(this_room);
 
-        room_style = "background-color: purple;";
+        room_style = "background-color: "+ this_room.color +";";
         room_border = "";
 
-        var rowspan = parseFloat(this_room[3]) - parseFloat(this_room[1]);
-
-        var colspan = (parseFloat(this_room[2]) - parseFloat(this_room[0])+1);
+        var rowspan = this_room.coordinates.y_end - this_room.coordinates.y_start;
+        var colspan = this_room.coordinates.x_end - this_room.coordinates.x_start + 1;
 
         room_dimensions = "colspan='"+colspan+"' rowspan='"+rowspan+"'";
 
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+row.room+"</h3></td>";
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+this_room.room+"</h3></td>";
 
       } else if (in_room(x,y)) {
         console.log(y+ "-" + x);
-      } else if(this_room["y_end"] == y && this_room["x_end"] == (x+1)){
-        /*
-        index_room = clue_object.rooms.shift();
-        this_room = index_room.coordinates;
-        console.dir(this_room)
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
-        */
       } else {
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
       }

@@ -52,51 +52,124 @@
 
 <script type="text/javascript">
 function in_room(x,y){
-  x >= this_room[0] &&
-  y >= this_room[1] &&
-  x <= this_room[2] &&
-  y <= this_room[3]
+  console.log("in room message");
+  console.log(x)
+  console.log(y);
+  var is_in_room = false;
+
+  clue_object.rooms.forEach((row, i) => {
+
+    if(
+      x >= row.coordinates[0] &&
+      y >= row.coordinates[1] &&
+      x <= row.coordinates[2] &&
+      y <= row.coordinates[3]
+    ){
+      is_in_room = true;
+    }
+  });
+  console.log("is in room =" + is_in_room);
+  return is_in_room;
+
 }
 var clue_object = {
   rooms: [
     {
       room:"studio",
-      coordinates: [0,0,6,3]
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
     },
     {
       room: "anticamera",
-      coordinates:[9,0,14,7]
+      coordinates:{
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      } [9,0,14,7]
     },
     {
       room:"veranda" ,
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[16,0,21,5]
     },
     {
       room:"biblioteca",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
        coordinates:[0,6,5,10]
      },
     {
       room:"finale",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[8,7,12,14]
     },
     {
       room:"sala_pranzo",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[15,8,21,15]
     },
     {
       room:"sala_biliardo" ,
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[0,11,4,16]
     },
     {
       room:"salotto",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[0,18,4,23]
     },
     {
       room:"sala_ballo",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[7,16,14,23]
     },
     {
       room:"cucina",
+      coordinates: {
+        x_start: 0,
+        x_end: 6,
+        y_start: 0,
+        y_end: 3
+      }
       coordinates:[17,17,21,22]
     }
   ]
@@ -132,13 +205,18 @@ var this_room = index_room.coordinates;
 
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+index_room.room+"</h3></td>";
 
-        index_room = clue_object.rooms.shift();
-        this_room = index_room.coordinates;
-        console.dir(this_room)
+
 
 
       } else if (in_room(x,y)) {
-console.log(y+ "-" + x);
+        console.log(y+ "-" + x);
+      } else if(this_room[2] == y && this_room[3] == (x+1)){
+        /*
+        index_room = clue_object.rooms.shift();
+        this_room = index_room.coordinates;
+        console.dir(this_room)
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
+        */
       } else {
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
       }

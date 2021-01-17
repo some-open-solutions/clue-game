@@ -41,7 +41,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_0" placeholder="Anthony" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control">
+    <select class="player_color_select form-control" id="color_">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -55,7 +55,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_1" placeholder="Brendan" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_1">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -69,7 +69,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_2" placeholder="Lily" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_2">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -83,7 +83,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_3" placeholder="Nico" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_3">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -97,7 +97,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_4" placeholder="Rich" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_4">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -111,7 +111,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_5" placeholder="Thalia" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_5">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -125,7 +125,7 @@
     </div>
     <input type="text" class="form-control" id="player_name_6" placeholder="Zola" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="player_color_select form-control form-control">
+    <select class="player_color_select form-control" id="color_6">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -263,8 +263,23 @@ var clue_object = {
 
 $("#start_game_btn").on("click", function(){
 
-  $(".player_color_select").forEach(function(item){
-    console.log(item);
+  for(var i = 0; i < $(".player_color_select").length; i++){
+    var this_player = $(".player_color_select")[i];
+    //console.log(this_player);
+  }
+
+
+
+  $(".player_color_select").each(function(index){
+
+    if($("#color_" + index).val() !== "Not playing (select color to play)"){
+      var this_character = {
+        name: $("#player_name_" + index).val(),
+        color: $("#color_" + index).val(),
+        location: "tbc"
+      }
+      clue_object.characters.push(this_character);
+    }
   });
 
   $("#welcome_page").fadeOut(1000, function(){

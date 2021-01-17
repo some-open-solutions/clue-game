@@ -58,12 +58,13 @@ function in_room(x,y){
   var is_in_room = false;
 
   clue_object.rooms.forEach((row, i) => {
+    console.log(row);
 
     if(
-      x >= row.coordinates[0] &&
-      y >= row.coordinates[1] &&
-      x <= row.coordinates[2] &&
-      y <= row.coordinates[3]
+      x >= row.coordinates["x_start"] &&
+      y >= row.coordinates["y_start"] &&
+      x <= row.coordinates["x_end"] &&
+      y <= row.coordinates["y_end"]
     ){
       is_in_room = true;
     }
@@ -72,6 +73,28 @@ function in_room(x,y){
   return is_in_room;
 
 }
+
+function start_room(x,y){
+  console.log("start room message");
+  console.log(x)
+  console.log(y);
+  var is_start_room = false;
+
+  clue_object.rooms.forEach((row, i) => {
+    console.log(row);
+
+    if(
+      x == row.coordinates["x_start"] &&
+      y == row.coordinates["y_start"]
+    ){
+      is_start_room = row.room;
+    }
+  });
+  console.log("is start room =" + is_start_room);
+  return is_start_room;
+
+}
+
 var clue_object = {
   rooms: [
     {
@@ -86,97 +109,86 @@ var clue_object = {
     {
       room: "anticamera",
       coordinates:{
-        x_start: 0,
-        x_end: 6,
+        x_start: 9,
+        x_end: 14,
         y_start: 0,
-        y_end: 3
-      } [9,0,14,7]
+        y_end: 7
+      }
     },
     {
       room:"veranda" ,
       coordinates: {
-        x_start: 0,
-        x_end: 6,
+        x_start: 16,
+        x_end: 21,
         y_start: 0,
-        y_end: 3
+        y_end: 5
       }
-      coordinates:[16,0,21,5]
     },
     {
       room:"biblioteca",
       coordinates: {
         x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_end: 5,
+        y_start: 6,
+        y_end: 10
       }
-       coordinates:[0,6,5,10]
      },
     {
       room:"finale",
       coordinates: {
-        x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_start: 8,
+        x_end: 12,
+        y_start: 7,
+        y_end: 14
       }
-      coordinates:[8,7,12,14]
     },
     {
       room:"sala_pranzo",
       coordinates: {
-        x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_start: 15,
+        x_end: 21,
+        y_start: 8,
+        y_end: 15
       }
-      coordinates:[15,8,21,15]
     },
     {
       room:"sala_biliardo" ,
       coordinates: {
         x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_end: 4,
+        y_start: 11,
+        y_end: 16
       }
-      coordinates:[0,11,4,16]
     },
     {
       room:"salotto",
       coordinates: {
         x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_end: 4,
+        y_start: 18,
+        y_end: 23
       }
-      coordinates:[0,18,4,23]
     },
     {
       room:"sala_ballo",
       coordinates: {
-        x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_start: 7,
+        x_end: 14,
+        y_start: 16,
+        y_end: 23
       }
-      coordinates:[7,16,14,23]
     },
     {
       room:"cucina",
       coordinates: {
-        x_start: 0,
-        x_end: 6,
-        y_start: 0,
-        y_end: 3
+        x_start: 17,
+        x_end: 21,
+        y_start: 17,
+        y_end: 22
       }
-      coordinates:[17,17,21,22]
     }
   ]
 }
-
-var index_room = clue_object.rooms.shift();
-var this_room = index_room.coordinates;
 
 
   var grid_html = "<table>";
@@ -191,8 +203,12 @@ var this_room = index_room.coordinates;
       var room_border = "border-style: solid;";
 
 
-      if (y == this_room[1] && x == this_room[0]) {
-
+      /*
+      if (y == this_room["y_start"] && x == this_room["x_start"]) {
+      */
+      if (start_room(x,y)){
+        var this_room = start_room(x,y);
+        console.log(this_room);
 
         room_style = "background-color: purple;";
         room_border = "";
@@ -203,14 +219,11 @@ var this_room = index_room.coordinates;
 
         room_dimensions = "colspan='"+colspan+"' rowspan='"+rowspan+"'";
 
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+index_room.room+"</h3></td>";
-
-
-
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+row.room+"</h3></td>";
 
       } else if (in_room(x,y)) {
         console.log(y+ "-" + x);
-      } else if(this_room[2] == y && this_room[3] == (x+1)){
+      } else if(this_room["y_end"] == y && this_room["x_end"] == (x+1)){
         /*
         index_room = clue_object.rooms.shift();
         this_room = index_room.coordinates;

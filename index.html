@@ -37,11 +37,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Anthony" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_0" placeholder="Anthony" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -51,11 +51,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Brendan" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_1" placeholder="Brendan" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -65,11 +65,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Lily" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_2" placeholder="Lily" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -79,11 +79,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Nico" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_3" placeholder="Nico" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -93,11 +93,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Rich" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_4" placeholder="Rich" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -107,11 +107,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Thalia" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_5" placeholder="Thalia" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -121,11 +121,11 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Character name</span>
+      <span class="input-group-text" >Character name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Zola" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" id="player_name_6" placeholder="Zola" aria-label="Username" aria-describedby="basic-addon1">
 
-    <select class="form-control">
+    <select class="player_color_select form-control form-control">
       <option>Not playing (select color to play)</option>
       <option>Pink</option>
       <option>Blue</option>
@@ -154,14 +154,9 @@
 <script type="text/javascript">
 
 
+
 var clue_object = {
-  characters: [
-    {
-      name: "Nico",
-      color: "pink",
-      current_location: "tbc"
-    }
-  ],
+  characters: [],
   rooms: [
     {
       room:"studio",
@@ -268,7 +263,9 @@ var clue_object = {
 
 $("#start_game_btn").on("click", function(){
 
-
+  $(".player_color_select").forEach(function(item){
+    console.log(item);
+  });
 
   $("#welcome_page").fadeOut(1000, function(){
     $("#grid_table").fadeIn(1000);
@@ -309,10 +306,6 @@ function start_room(x,y){
 
 }
 
-
-
-
-
   var grid_html = "<table>";
   // i is for the rows
   for (var y = 0; y < 23; y++) {
@@ -324,10 +317,6 @@ function start_room(x,y){
       var room_dimensions = "";
       var room_border = "border-style: solid;";
 
-
-      /*
-      if (y == this_room["y_start"] && x == this_room["x_start"]) {
-      */
       if (start_room(x,y)){
         var this_room = start_room(x,y);
 
@@ -342,7 +331,7 @@ function start_room(x,y){
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+this_room.room+"</h3></td>";
 
       } else if (in_room(x,y)) {
-        console.log(y+ "-" + x);
+
       } else {
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
       }

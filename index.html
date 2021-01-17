@@ -110,11 +110,11 @@ var this_room = index_room.coordinates;
       var room_style = "";
       var room_dimensions = "";
       var room_border = "border-style: solid;";
-      //for (var k = 0; k < Object.keys(clue_object.rooms).length; k++){
-        //var index_room =  Object.keys(clue_object.rooms)[k];
-        //var this_room = clue_object.rooms[index_room];
 
-      if (i ==this_room[1] && j==this_room[0]) {
+
+      if (i == this_room[1] && j == this_room[0]) {
+
+
         room_style = "background-color: purple;";
         room_border = "";
 
@@ -125,25 +125,23 @@ var this_room = index_room.coordinates;
         room_dimensions = "colspan='"+colspan+"' rowspan='"+rowspan+"'";
 
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'><h3 class='text-white'>"+index_room.room+"</h3></td>";
-      }
-      if (
+
+        index_room = clue_object.rooms.shift();
+        this_room = index_room.coordinates;
+        console.dir(this_room);
+
+      } else if (
         j >= this_room[0] &&
         i >= this_room[1] &&
         j <= this_room[2] &&
-        i <  this_room[3]
-      )
-      {
+        i <= this_room[3]
+      ) {
 
-      }else if (i > this_room[3] && j> this_room[2]) {
-        index_room = clue_object.rooms.shift();
-        this_room = index_room.coordinates;
-
-      }else{
+      } else {
         grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + i + "-" + j +  "</td>";
       }
     }
-    //}
-  grid_html += "</tr>";
+    grid_html += "</tr>";
   }
   grid_html += "</table>";
   $("#grid_table").html(grid_html);

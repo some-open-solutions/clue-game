@@ -51,6 +51,12 @@
 
 
 <script type="text/javascript">
+function in_room(x,y){
+  x >= this_room[0] &&
+  y >= this_room[1] &&
+  x <= this_room[2] &&
+  y <= this_room[3]
+}
 var clue_object = {
   rooms: [
     {
@@ -102,17 +108,17 @@ var this_room = index_room.coordinates;
 
   var grid_html = "<table>";
   // i is for the rows
-  for (var i = 0; i < 23; i++) {
+  for (var y = 0; y < 23; y++) {
     grid_html += "<tr>";
 
     // j is for the columns
-    for (var j = 0; j < 22; j++) {
+    for (var x = 0; x < 22; x++) {
       var room_style = "";
       var room_dimensions = "";
       var room_border = "border-style: solid;";
 
 
-      if (i == this_room[1] && j == this_room[0]) {
+      if (y == this_room[1] && x == this_room[0]) {
 
 
         room_style = "background-color: purple;";
@@ -128,17 +134,13 @@ var this_room = index_room.coordinates;
 
         index_room = clue_object.rooms.shift();
         this_room = index_room.coordinates;
-        console.dir(this_room);
+        console.dir(this_room)
 
-      } else if (
-        j >= this_room[0] &&
-        i >= this_room[1] &&
-        j <= this_room[2] &&
-        i <= this_room[3]
-      ) {
 
+      } else if (in_room(x,y)) {
+console.log(y+ "-" + x);
       } else {
-        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + i + "-" + j +  "</td>";
+        grid_html += "<td " +room_dimensions+ "style = 'width: 50px; height:50px; "+room_border+"; "+room_style+"'>" + y + "-" + x +  "</td>";
       }
     }
     grid_html += "</tr>";
